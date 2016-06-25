@@ -6,10 +6,11 @@ export var AddTodo = React.createClass({
   handleSubmit: function(e) {
     e.preventDefault();
     var {dispatch} = this.props;
-    var text = this.refs.todoText.value;
-    if(text.length > 1) {
-      this.refs.todoText.value='';
-      dispatch(actions.addTodo(text))
+    var todoText = this.refs.todoText.value;
+
+    if (todoText.length > 0) {
+      this.refs.todoText.value = '';
+      dispatch(actions.startAddTodo(todoText));
     } else {
       this.refs.todoText.focus();
     }
