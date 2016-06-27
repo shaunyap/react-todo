@@ -1,11 +1,11 @@
-var firebase = require('firebase/firebase-browser');
+import firebase from 'firebase';
 
 try {
   var config = {
-    apiKey: "AIzaSyC3Rp-tgylI3AsHa_GroHRN0sdjljY1voQ",
-    authDomain: "shaun-todo-app.firebaseapp.com",
-    databaseURL: "https://shaun-todo-app.firebaseio.com",
-    storageBucket: "shaun-todo-app.appspot.com",
+    apiKey: process.env.API_KEY,
+    authDomain: process.env.AUTH_DOMAIN,
+    databaseURL: process.env.DATABASE_URL,
+    storageBucket: process.env.STORAGE_BUCKET
   };
 
   firebase.initializeApp(config);

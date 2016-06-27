@@ -1,6 +1,7 @@
 var expect = require('expect');
-var reducers = require('reducers');
 var df = require('deep-freeze-strict');
+
+var reducers = require('reducers');
 
 describe('Reducers', () => {
   describe('searchTextReducer', () => {
@@ -18,7 +19,7 @@ describe('Reducers', () => {
   describe('showCompletedReducer', () => {
     it('should toggle showCompleted', () => {
       var action = {
-        type: 'TOGGLE_SHOW_COMPLETED',
+        type: 'TOGGLE_SHOW_COMPLETED'
       };
       var res = reducers.showCompletedReducer(df(false), df(action));
 
@@ -34,27 +35,27 @@ describe('Reducers', () => {
           id: 'abc123',
           text: 'Something to do',
           completed: false,
-          createdAt: 12345
+          createdAt: 92384275
         }
-      }
+      };
       var res = reducers.todosReducer(df([]), df(action));
 
       expect(res.length).toEqual(1);
       expect(res[0]).toEqual(action.todo);
     });
 
-    it('should update Todo', () => {
+    it('should update todo', () => {
       var todos = [{
         id: '123',
-        text: 'Thing that needs done',
+        text: 'Something',
         completed: true,
         createdAt: 123,
-        completedAt: 300
+        completedAt: 125
       }];
       var updates = {
         completed: false,
         completedAt: null
-      }
+      };
       var action = {
         type: 'UPDATE_TODO',
         id: todos[0].id,
@@ -63,25 +64,22 @@ describe('Reducers', () => {
       var res = reducers.todosReducer(df(todos), df(action));
 
       expect(res[0].completed).toEqual(updates.completed);
-      expect(res[0].compeltedAt).toEqual(updates.completedAt);
+      expect(res[0].completedAt).toEqual(updates.completedAt);
       expect(res[0].text).toEqual(todos[0].text);
-
     });
 
-    it('should generate add todo action', () => {
+    it('should add existing todos', () => {
       var todos = [{
-        id: 111,
-        text: 'finish course',
+        id: '111',
+        text: 'anything',
         completed: false,
-        completedAt: false,
-        createdAt: 50000
+        completedAt: undefined,
+        createdAt: 33000
       }];
-
       var action = {
         type: 'ADD_TODOS',
         todos
       };
-
       var res = reducers.todosReducer(df([]), df(action));
 
       expect(res.length).toEqual(1);
